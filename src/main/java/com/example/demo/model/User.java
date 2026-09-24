@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
+    @Id
     @GeneratedValue()
     private Long id;
 
@@ -35,12 +37,14 @@ public class User {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<PullRequest> taughtRepositories;
 
-    @ManyToOne(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<PullRequest> authoredPullRequests;
 
     @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
     private List<PullRequest> reviewedPullRequests;
 
-    @ManyToOne(mappedBy = "commits", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "commits", cascade = CascadeType.ALL)
     private List<Commit> commits;
+
 }
