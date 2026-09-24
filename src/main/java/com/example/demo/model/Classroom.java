@@ -18,14 +18,8 @@ public class Classroom {
     @Id
     @GeneratedValue
     private Long id;
-
-    @GeneratedValue
     private String name;
-
-    @GeneratedValue
     private String course_code;
-
-    @GeneratedValue
     private String semester;
 
     @JsonIgnore
@@ -34,5 +28,5 @@ public class Classroom {
     private User user;
 
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private List<Classroom> authoredPullRequests;
+    private List<Assignment> assignments;
 }

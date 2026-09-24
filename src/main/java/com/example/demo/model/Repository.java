@@ -32,10 +32,19 @@ public class Repository {
     private Timestamp created_at;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assignment_id")
+    private Assignment assignment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_repo_id")
     private Repository repository;
+
+    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
+    private List<PullRequest> reviewedPullRequests;
+
+
 }

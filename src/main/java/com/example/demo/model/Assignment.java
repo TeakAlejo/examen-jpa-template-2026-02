@@ -41,5 +41,5 @@ public class Assignment {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
-    private List<Assignment> assignments;
+    private List<Repository> repositories;
 }

@@ -25,7 +25,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @Column(name = "full_name", nullable = false)
+    @Column(nullable = false)
     private String role;
 
     @Column(nullable = false)
@@ -35,7 +35,7 @@ public class User {
     private List<Classroom> ownedRepositories;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private List<PullRequest> taughtRepositories;
+    private List<Repository> taughtRepositories;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<PullRequest> authoredPullRequests;
